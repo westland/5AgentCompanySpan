@@ -267,6 +267,10 @@ else
 fi
 echo '{}' > "${CRON_DIR}/jobs-state.json"
 
+# Fix config if needed
+echo "Running openclaw doctor --fix..."
+openclaw doctor --fix || true
+
 # Start openclaw gateway in the background
 echo "Starting OpenClaw Gateway..."
 openclaw gateway run &
