@@ -12,12 +12,9 @@ echo "Starting initialization of OpenClaw and Web Portal..."
 echo "OPENCLAW_HOME is set to: $OPENCLAW_HOME"
 echo "PATH: $PATH"
 echo "npm global root: $(npm root -g)"
-echo "npm global list:"
-npm list -g --depth=0 || true
-echo "Files in /usr/local/bin:"
-ls -la /usr/local/bin || true
-echo "Files in /usr/bin:"
-ls -la /usr/bin/openclaw* || ls -la /usr/bin || true
+echo "openclaw module files:"
+ls -la /usr/lib/node_modules/openclaw || true
+ls -la /usr/lib/node_modules/openclaw/bin || true
 echo "---"
 
 # Phase 1: Set up directories
