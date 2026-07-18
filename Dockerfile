@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install openclaw globally
-RUN npm install -g openclaw
+RUN npm install -g openclaw@2026.4.26
 
 # Set up working directory
 WORKDIR /app

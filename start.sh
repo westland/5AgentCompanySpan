@@ -10,12 +10,6 @@ DISCORD_WEBHOOK_URL="${DISCORD_WEBHOOK_URL:-$PORTAL_REPORTS_URL}"
 
 echo "Starting initialization of OpenClaw and Web Portal..."
 echo "OPENCLAW_HOME is set to: $OPENCLAW_HOME"
-echo "PATH: $PATH"
-echo "npm global root: $(npm root -g)"
-echo "openclaw module files:"
-ls -la /usr/lib/node_modules/openclaw || true
-ls -la /usr/lib/node_modules/openclaw/bin || true
-echo "---"
 
 # Phase 1: Set up directories
 mkdir -p "${OPENCLAW_HOME}/logs"
