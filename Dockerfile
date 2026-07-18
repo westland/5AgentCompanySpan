@@ -33,7 +33,7 @@ RUN pip install --no-cache-dir \
 COPY --chown=user:user . .
 
 # Set environment variables
-ENV HOME=/home/user
+ENV HOME=/app
 ENV OPENCLAW_HOME=/app/.openclaw
 ENV DB_PATH=/app/dermaart.db
 ENV GATEWAY_URL=http://127.0.0.1:18789/v1/chat/completions
