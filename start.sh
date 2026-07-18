@@ -161,8 +161,14 @@ cat > "${OPENCLAW_HOME}/openclaw.json" << CONFIGEOF
         "timeoutSeconds": 300,
         "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
         "models": [
-          "gemini-2.5-flash",
-          "gemini-2.0-flash"
+          {
+            "id": "gemini-2.5-flash",
+            "name": "Gemini 2.5 Flash"
+          },
+          {
+            "id": "gemini-2.0-flash",
+            "name": "Gemini 2.0 Flash"
+          }
         ]
       }
     }
