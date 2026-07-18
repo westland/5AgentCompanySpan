@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
+export HOME=/app
+
 # Configurations
 OPENCLAW_HOME="${OPENCLAW_HOME:-/app/.openclaw}"
 PORTAL_REPORTS_URL="${PORTAL_REPORTS_URL:-http://127.0.0.1:7860/api/reports/submit}"
