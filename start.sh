@@ -11,10 +11,13 @@ DISCORD_WEBHOOK_URL="${DISCORD_WEBHOOK_URL:-$PORTAL_REPORTS_URL}"
 echo "Starting initialization of OpenClaw and Web Portal..."
 echo "OPENCLAW_HOME is set to: $OPENCLAW_HOME"
 echo "PATH: $PATH"
-echo "Global node bin folder: $(npm bin -g 2>/dev/null || npm config get prefix 2>/dev/null)/bin"
-echo "Searching for openclaw:"
-find / -name "openclaw" -type f 2>/dev/null || true
-find / -name "openclaw" -type l 2>/dev/null || true
+echo "npm global root: $(npm root -g)"
+echo "npm global list:"
+npm list -g --depth=0 || true
+echo "Files in /usr/local/bin:"
+ls -la /usr/local/bin || true
+echo "Files in /usr/bin:"
+ls -la /usr/bin/openclaw* || ls -la /usr/bin || true
 echo "---"
 
 # Phase 1: Set up directories
