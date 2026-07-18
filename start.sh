@@ -78,12 +78,7 @@ cat > "${OPENCLAW_HOME}/openclaw.json" << CONFIGEOF
       "mode": "none"
     }
   },
-  "session": {
-    "writeLock": {
-      "acquireTimeoutMs": 300000,
-      "maxHoldMs": 600000
-    }
-  },
+  "session": {},
   "acp": {
     "enabled": true,
     "allowedAgents": [
@@ -163,7 +158,12 @@ cat > "${OPENCLAW_HOME}/openclaw.json" << CONFIGEOF
   "models": {
     "providers": {
       "google": {
-        "timeoutSeconds": 300
+        "timeoutSeconds": 300,
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "models": [
+          "gemini-2.5-flash",
+          "gemini-2.0-flash"
+        ]
       }
     }
   },
