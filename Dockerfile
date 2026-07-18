@@ -35,6 +35,7 @@ COPY --chown=user:user . .
 # Set environment variables
 ENV HOME=/app
 ENV OPENCLAW_HOME=/app/.openclaw
+ENV OPENCLAW_CONFIG_PATH=/app/.openclaw/openclaw.json
 ENV DB_PATH=/app/dermaart.db
 ENV GATEWAY_URL=http://127.0.0.1:18789/v1/chat/completions
 ENV PORTAL_REPORTS_URL=http://127.0.0.1:7860/api/reports/submit

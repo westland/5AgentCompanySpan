@@ -5,6 +5,7 @@ export HOME=/app
 
 # Configurations
 OPENCLAW_HOME="${OPENCLAW_HOME:-/app/.openclaw}"
+export OPENCLAW_CONFIG_PATH="${OPENCLAW_HOME}/openclaw.json"
 PORTAL_REPORTS_URL="${PORTAL_REPORTS_URL:-http://127.0.0.1:7860/api/reports/submit}"
 GEMINI_API_KEY="${GEMINI_API_KEY:-}"
 OPENAI_API_KEY="${OPENAI_API_KEY:-}"
