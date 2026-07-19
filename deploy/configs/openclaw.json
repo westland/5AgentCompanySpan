@@ -1,5 +1,6 @@
 {
   "env": {
+    "DEEPSEEK_API_KEY": "YOUR_DEEPSEEK_API_KEY",
     "GEMINI_API_KEY": "YOUR_GEMINI_API_KEY",
     "GOOGLE_API_KEY": "YOUR_GOOGLE_API_KEY",
     "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY",
@@ -19,12 +20,7 @@
       "mode": "none"
     }
   },
-  "session": {
-    "writeLock": {
-      "acquireTimeoutMs": 300000,
-      "maxHoldMs": 600000
-    }
-  },
+  "session": {},
   "acp": {
     "enabled": true,
     "allowedAgents": [
@@ -40,7 +36,7 @@
     "defaults": {
       "timeoutSeconds": 300,
       "model": {
-        "primary": "google/gemini-2.5-flash"
+        "primary": "deepseek/deepseek-chat"
       },
       "subagents": {
         "allowAgents": [
@@ -53,13 +49,7 @@
         "maxSpawnDepth": 1
       },
       "memorySearch": {
-        "provider": "gemini",
-        "fallback": "none",
-        "remote": {
-          "batch": {
-            "enabled": false
-          }
-        }
+        "enabled": false
       }
     },
     "list": [
@@ -69,42 +59,50 @@
         "default": true,
         "workspace": "~/.openclaw/workspace-henry",
         "agentDir": "~/.openclaw/agents/henry",
-        "model": "google/gemini-2.5-flash"
+        "model": "deepseek/deepseek-chat"
       },
       {
         "id": "coder",
         "name": "Coder",
         "workspace": "~/.openclaw/workspace-coder",
         "agentDir": "~/.openclaw/agents/coder",
-        "model": "google/gemini-2.5-flash"
+        "model": "deepseek/deepseek-chat"
       },
       {
         "id": "scout",
         "name": "Scout",
         "workspace": "~/.openclaw/workspace-scout",
         "agentDir": "~/.openclaw/agents/scout",
-        "model": "google/gemini-2.5-flash"
+        "model": "deepseek/deepseek-chat"
       },
       {
         "id": "writer",
         "name": "Writer",
         "workspace": "~/.openclaw/workspace-writer",
         "agentDir": "~/.openclaw/agents/writer",
-        "model": "google/gemini-2.5-flash"
+        "model": "deepseek/deepseek-chat"
       },
       {
         "id": "watcher",
         "name": "Watcher",
         "workspace": "~/.openclaw/workspace-watcher",
         "agentDir": "~/.openclaw/agents/watcher",
-        "model": "google/gemini-2.5-flash"
+        "model": "deepseek/deepseek-chat"
       }
     ]
   },
   "models": {
     "providers": {
-      "google": {
-        "timeoutSeconds": 300
+      "deepseek": {
+        "baseUrl": "https://api.deepseek.com/v1",
+        "apiKey": "${DEEPSEEK_API_KEY}",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "deepseek-chat",
+            "name": "DeepSeek V3"
+          }
+        ]
       }
     }
   },

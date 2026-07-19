@@ -9,6 +9,7 @@ export OPENCLAW_CONFIG_PATH="${OPENCLAW_HOME}/openclaw.json"
 PORTAL_REPORTS_URL="${PORTAL_REPORTS_URL:-http://127.0.0.1:7860/api/reports/submit}"
 GEMINI_API_KEY="${GEMINI_API_KEY:-}"
 OPENAI_API_KEY="${OPENAI_API_KEY:-}"
+DEEPSEEK_API_KEY="${DEEPSEEK_API_KEY:-}"
 DISCORD_WEBHOOK_URL="${DISCORD_WEBHOOK_URL:-$PORTAL_REPORTS_URL}"
 
 echo "Starting initialization of OpenClaw and Web Portal..."
@@ -59,6 +60,7 @@ fi
 cat > "${OPENCLAW_HOME}/openclaw.json" << CONFIGEOF
 {
   "env": {
+    "DEEPSEEK_API_KEY": "${DEEPSEEK_API_KEY}",
     "GEMINI_API_KEY": "${GEMINI_API_KEY}",
     "GOOGLE_API_KEY": "${GEMINI_API_KEY}",
     "OPENAI_API_KEY": "${OPENAI_API_KEY}",
@@ -94,7 +96,7 @@ cat > "${OPENCLAW_HOME}/openclaw.json" << CONFIGEOF
     "defaults": {
       "timeoutSeconds": 300,
       "model": {
-        "primary": "google/gemini-2.5-flash"
+        "primary": "deepseek/deepseek-chat"
       },
       "subagents": {
         "allowAgents": [
@@ -107,13 +109,7 @@ cat > "${OPENCLAW_HOME}/openclaw.json" << CONFIGEOF
         "maxSpawnDepth": 1
       },
       "memorySearch": {
-        "provider": "gemini",
-        "fallback": "none",
-        "remote": {
-          "batch": {
-            "enabled": false
-          }
-        }
+        "enabled": false
       }
     },
     "list": [
@@ -123,51 +119,48 @@ cat > "${OPENCLAW_HOME}/openclaw.json" << CONFIGEOF
         "default": true,
         "workspace": "${OPENCLAW_HOME}/workspace-henry",
         "agentDir": "${OPENCLAW_HOME}/agents/henry",
-        "model": "google/gemini-2.5-flash"
+        "model": "deepseek/deepseek-chat"
       },
       {
         "id": "coder",
         "name": "Coder",
         "workspace": "${OPENCLAW_HOME}/workspace-coder",
         "agentDir": "${OPENCLAW_HOME}/agents/coder",
-        "model": "google/gemini-2.5-flash"
+        "model": "deepseek/deepseek-chat"
       },
       {
         "id": "scout",
         "name": "Scout",
         "workspace": "${OPENCLAW_HOME}/workspace-scout",
         "agentDir": "${OPENCLAW_HOME}/agents/scout",
-        "model": "google/gemini-2.5-flash"
+        "model": "deepseek/deepseek-chat"
       },
       {
         "id": "writer",
         "name": "Writer",
         "workspace": "${OPENCLAW_HOME}/workspace-writer",
         "agentDir": "${OPENCLAW_HOME}/agents/writer",
-        "model": "google/gemini-2.5-flash"
+        "model": "deepseek/deepseek-chat"
       },
       {
         "id": "watcher",
         "name": "Watcher",
         "workspace": "${OPENCLAW_HOME}/workspace-watcher",
         "agentDir": "${OPENCLAW_HOME}/agents/watcher",
-        "model": "google/gemini-2.5-flash"
+        "model": "deepseek/deepseek-chat"
       }
     ]
   },
   "models": {
     "providers": {
-      "google": {
-        "timeoutSeconds": 300,
-        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+      "deepseek": {
+        "baseUrl": "https://api.deepseek.com/v1",
+        "apiKey": "${DEEPSEEK_API_KEY}",
+        "api": "openai-completions",
         "models": [
           {
-            "id": "gemini-2.5-flash",
-            "name": "Gemini 2.5 Flash"
-          },
-          {
-            "id": "gemini-2.0-flash",
-            "name": "Gemini 2.0 Flash"
+            "id": "deepseek-chat",
+            "name": "DeepSeek V3"
           }
         ]
       }
