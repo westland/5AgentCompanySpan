@@ -37,28 +37,28 @@ document.querySelectorAll(".nav-item").forEach(button => {
 function updateHeaderInfo(tabId) {
     switch(tabId) {
         case "tab-command":
-            pageTitle.innerText = "Command Center";
-            pageDesc.innerText = "Issue requests and direct tasks to your Chief of Staff, Henry.";
+            pageTitle.innerText = "Centro de Mando";
+            pageDesc.innerText = "Emite solicitudes y dirige tareas a tu Jefe de Personal, Henry.";
             break;
         case "tab-roster":
-            pageTitle.innerText = "Agent Roster";
-            pageDesc.innerText = "Details and workspace configurations of your 5 AI specialists.";
+            pageTitle.innerText = "Lista de Agentes";
+            pageDesc.innerText = "Detalles y configuraciones del espacio de trabajo de tus 5 especialistas de IA.";
             break;
         case "tab-cron":
-            pageTitle.innerText = "Automated Jobs";
-            pageDesc.innerText = "Monitor automated cron schedules and trigger them on-demand.";
+            pageTitle.innerText = "Trabajos Automatizados";
+            pageDesc.innerText = "Monitorea horarios cron automatizados y actívalos a pedido.";
             break;
         case "tab-reports":
-            pageTitle.innerText = "Reports & Memos";
-            pageDesc.innerText = "Review generated research briefings, operational memos, and health logs.";
+            pageTitle.innerText = "Informes y Memorándums";
+            pageDesc.innerText = "Revisa los informes de investigación, memorándums operativos y registros de salud generados.";
             break;
         case "tab-system":
-            pageTitle.innerText = "System Status";
-            pageDesc.innerText = "Hardware resources and process health metrics of your server.";
+            pageTitle.innerText = "Estado del Sistema";
+            pageDesc.innerText = "Recursos de hardware y métricas de salud de procesos de tu servidor.";
             break;
         case "tab-credentials":
-            pageTitle.innerText = "Integrations & Auth";
-            pageDesc.innerText = "Configure and manage credentials shared with specific AI agents.";
+            pageTitle.innerText = "Integraciones y Autenticación";
+            pageDesc.innerText = "Configura y administra las credenciales compartidas con agentes de IA específicos.";
             break;
     }
 }
@@ -74,10 +74,10 @@ async function pollSystemStats() {
         const gwBadge = document.getElementById("gateway-status-badge");
         if (data.gateway_active) {
             gwBadge.className = "badge badge-active";
-            gwBadge.innerText = "ACTIVE";
+            gwBadge.innerText = "ACTIVO";
         } else {
             gwBadge.className = "badge badge-inactive";
-            gwBadge.innerText = "INACTIVE";
+            gwBadge.innerText = "INACTIVO";
         }
         
         // Update metrics if available
@@ -104,7 +104,7 @@ async function pollSystemStats() {
                     document.getElementById("sys-proc-uptime").innerText = data.process.uptime;
                     document.getElementById("sys-proc-mem").innerText = `${data.process.mem_mb} MB`;
                 } else {
-                    document.getElementById("sys-proc-pid").innerText = "Not running";
+                    document.getElementById("sys-proc-pid").innerText = "No se está ejecutando";
                     document.getElementById("sys-proc-uptime").innerText = "—";
                     document.getElementById("sys-proc-mem").innerText = "—";
                 }
@@ -195,7 +195,7 @@ commandForm.addEventListener("submit", async (e) => {
     // Disable inputs and add loader bubble
     commandInput.disabled = true;
     submitBtn.disabled = true;
-    const loaderId = appendLoader("Processing attachments & thinking...");
+    const loaderId = appendLoader("Procesando archivos adjuntos y pensando...");
     
     try {
         let uploadedNames = [];
@@ -213,12 +213,12 @@ commandForm.addEventListener("submit", async (e) => {
                     const uploadData = await uploadRes.json();
                     uploadedNames.push(uploadData.filename);
                 } else {
-                    appendMessage("system", `Upload failed for file: ${file.name}`);
+                    appendMessage("system", `Falla en la subida del archivo: ${file.name}`);
                 }
             }
             
             if (uploadedNames.length > 0) {
-                prompt += `\n\n[Attached workspace files: ${uploadedNames.join(", ")}]`;
+                prompt += `\n\n[Archivos del espacio de trabajo adjuntos: ${uploadedNames.join(", ")}]`;
             }
             
             selectedChatFiles = [];
@@ -235,7 +235,7 @@ commandForm.addEventListener("submit", async (e) => {
         
         if (!res.ok) {
             const err = await res.json();
-            appendMessage("system", `Error: ${err.detail || "Request failed"}`);
+            appendMessage("system", `Error: ${err.detail || "Solicitud fallida"}`);
         } else {
             const data = await res.json();
             appendMessage("henry", data.response);
@@ -243,7 +243,7 @@ commandForm.addEventListener("submit", async (e) => {
         }
     } catch (err) {
         removeLoader(loaderId);
-        appendMessage("system", `Portal Error: ${err.message}`);
+        appendMessage("system", `Error del portal: ${err.message}`);
     } finally {
         commandInput.disabled = false;
         submitBtn.disabled = false;
@@ -302,7 +302,7 @@ function appendMessage(sender, text) {
         const parsedContent = marked.parse(cleanText.trim());
         
         div.innerHTML = `
-            <div class="agent-message-header">${sender.toUpperCase()} (Chief of Staff)</div>
+            <div class="agent-message-header">${sender.toUpperCase()} (Jefe de Personal)</div>
             <div class="agent-message-content">${parsedContent}${mediaHtml}</div>
         `;
     }
@@ -347,9 +347,9 @@ async function loadCommandHistory() {
             if (cmd.status === "done") {
                 appendMessage(cmd.agent_id, cmd.response);
             } else if (cmd.status === "failed") {
-                appendMessage("system", `Command failed: ${cmd.response}`);
+                appendMessage("system", `Comando fallido: ${cmd.response}`);
             } else if (cmd.status === "running") {
-                appendMessage("system", `Henry is currently processing: "${cmd.prompt}"`);
+                appendMessage("system", `Henry está procesando actualmente: "${cmd.prompt}"`);
             }
         });
     } catch (e) {
@@ -379,20 +379,20 @@ async function loadAgentRoster() {
             else if (agent.id === "writer") iconCode = '<i class="fa-solid fa-file-pen"></i>';
             else if (agent.id === "watcher") iconCode = '<i class="fa-solid fa-eye text-gold"></i>';
 
-            let roleStr = "Agent";
-            if (agent.id === "henry") roleStr = "Chief of Staff & Boss";
-            else if (agent.id === "coder") roleStr = "Software Engineer";
-            else if (agent.id === "scout") roleStr = "Research Analyst";
-            else if (agent.id === "writer") roleStr = "Content Creator";
-            else if (agent.id === "watcher") roleStr = "System Monitor";
+            let roleStr = "Agente";
+            if (agent.id === "henry") roleStr = "Jefe de Personal y Jefe";
+            else if (agent.id === "coder") roleStr = "Ingeniero de Software";
+            else if (agent.id === "scout") roleStr = "Analista de Investigación";
+            else if (agent.id === "writer") roleStr = "Creador de Contenido";
+            else if (agent.id === "watcher") roleStr = "Monitor de Sistema";
 
             // Extract brief description from SOUL
-            let desc = "Active participant in the MedSpa operations.";
-            if (agent.id === "henry") desc = "Strategic orchestrator. Translates Sumar's directives into subordinate task delegations.";
-            else if (agent.id === "coder") desc = "Develops & updates Derma Art homepage. Manages Nginx servers and asset optimizations.";
-            else if (agent.id === "scout") desc = "Scans competitive prices, local demand, and financing frameworks (Cherry, CareCredit).";
-            else if (agent.id === "writer") desc = "Drafts minimalist copy, distinction blurbs, virtual consult texts, and review answers.";
-            else if (agent.id === "watcher") desc = "Monitors memory swap caps, API status, and droplet resource boundaries.";
+            let desc = "Participante activo en las operaciones de MedSpa.";
+            if (agent.id === "henry") desc = "Orquestador estratégico. Traduce las directivas de Sumar en delegaciones de tareas a los subordinados.";
+            else if (agent.id === "coder") desc = "Desarrolla y actualiza la página de inicio de Derma Art. Administra servidores Nginx y optimización de activos.";
+            else if (agent.id === "scout") desc = "Escanea precios de la competencia, demanda local y marcos de financiamiento (Cherry, CareCredit).";
+            else if (agent.id === "writer") desc = "Redacta textos minimalistas, notas de distinción, textos de consulta virtual y respuestas a reseñas.";
+            else if (agent.id === "watcher") desc = "Monitorea límites de swap de memoria, estado de la API y límites de recursos de droplet.";
 
             card.innerHTML = `
                 <div class="agent-card-header">
@@ -404,7 +404,7 @@ async function loadAgentRoster() {
                 </div>
                 <div class="agent-card-desc">${desc}</div>
                 <div class="agent-card-meta">
-                    <span>STATUS: ACTIVE</span>
+                    <span>ESTADO: ACTIVO</span>
                     <span>REST API</span>
                 </div>
             `;
@@ -426,7 +426,7 @@ let currentModalAgent = null;
 
 function showAgentModal(agent) {
     currentModalAgent = agent.id;
-    modalTitle.innerText = `${agent.name} — Profile Detail`;
+    modalTitle.innerText = `${agent.name} — Detalle del Perfil`;
     modalSoul.innerHTML = marked.parse(agent.soul || "# SOUL.md missing");
     modalMem.innerHTML = marked.parse(agent.memory || "# MEMORY.md missing");
     
@@ -526,25 +526,25 @@ async function uploadAgentFile(agentId, file) {
         });
         if (!res.ok) {
             const err = await res.json();
-            alert(`Failed to upload ${file.name}: ${err.detail || "Upload error"}`);
+            alert(`No se pudo subir ${file.name}: ${err.detail || "Error de subida"}`);
         }
     } catch (e) {
-        alert(`Failed to upload ${file.name}: ${e.message}`);
+        alert(`No se pudo subir ${file.name}: ${e.message}`);
     }
 }
 
 async function loadAgentFiles(agentId) {
     if (!modalFilesList) return;
-    modalFilesList.innerHTML = `<p class="text-secondary" style="grid-column: 1/-1; text-align: center; padding: 20px;">Loading workspace files...</p>`;
+    modalFilesList.innerHTML = `<p class="text-secondary" style="grid-column: 1/-1; text-align: center; padding: 20px;">Cargando archivos del espacio de trabajo...</p>`;
     
     try {
         const res = await fetch(`/api/media/list?agent_id=${agentId}`);
-        if (!res.ok) throw new Error("Failed to load");
+        if (!res.ok) throw new Error("No se pudo cargar");
         const data = await res.json();
         
         modalFilesList.innerHTML = "";
         if (!data.files || data.files.length === 0) {
-            modalFilesList.innerHTML = `<p class="text-secondary" style="grid-column: 1/-1; text-align: center; padding: 20px;"><i class="fa-regular fa-file-image" style="font-size: 2em; margin-bottom: 8px; display: block;"></i>No pictures or videos in workspace</p>`;
+            modalFilesList.innerHTML = `<p class="text-secondary" style="grid-column: 1/-1; text-align: center; padding: 20px;"><i class="fa-regular fa-file-image" style="font-size: 2em; margin-bottom: 8px; display: block;"></i>No hay imágenes o videos en el espacio de trabajo</p>`;
             return;
         }
         
@@ -580,12 +580,12 @@ async function loadAgentFiles(agentId) {
             modalFilesList.appendChild(item);
         });
     } catch (e) {
-        modalFilesList.innerHTML = `<p class="text-danger" style="grid-column: 1/-1; text-align: center; padding: 20px;">Error loading files: ${e.message}</p>`;
+        modalFilesList.innerHTML = `<p class="text-danger" style="grid-column: 1/-1; text-align: center; padding: 20px;">Error al cargar archivos: ${e.message}</p>`;
     }
 }
 
 window.deleteAgentFile = async function(agentId, filename) {
-    if (!confirm(`Are you sure you want to delete ${filename}?`)) return;
+    if (!confirm(`¿Estás seguro de que quieres eliminar ${filename}?`)) return;
     try {
         const res = await fetch(`/api/media/delete?agent_id=${agentId}&filename=${encodeURIComponent(filename)}`, {
             method: "POST"
@@ -593,10 +593,10 @@ window.deleteAgentFile = async function(agentId, filename) {
         if (res.ok) {
             loadAgentFiles(agentId);
         } else {
-            alert("Failed to delete file.");
+            alert("No se pudo eliminar el archivo.");
         }
     } catch (e) {
-        alert(`Error deleting file: ${e.message}`);
+        alert(`Error al eliminar archivo: ${e.message}`);
     }
 };
 
@@ -615,7 +615,7 @@ async function loadCronJobs() {
         container.innerHTML = "";
         
         if (!data.jobs || data.jobs.length === 0) {
-            container.innerHTML = `<div class="card"><p class="text-secondary">No cron jobs configured.</p></div>`;
+            container.innerHTML = `<div class="card"><p class="text-secondary">No hay trabajos cron configurados.</p></div>`;
             return;
         }
         
@@ -623,14 +623,14 @@ async function loadCronJobs() {
             const card = document.createElement("div");
             card.className = "cron-card";
             
-            let desc = "Scheduled automation script.";
-            if (job.id === "health-check-main") desc = "Pings CPU usage, RAM utilization, and Nginx logs every 5 minutes. Logs alerts to portal.";
-            else if (job.id === "session-cleanup-hourly") desc = "Clears large Node processes, archives idle session tokens, and cleans local system temp files.";
-            else if (job.id === "morning-research-daily") desc = "Automated Scout scan at 8:00 AM. Gathers competitor aesthetic prices and local clinic updates.";
-            else if (job.id === "daily-memo-writer") desc = "Runs at 9:00 AM. Writer reviews Scout's scan and compiles a morning operations briefing.";
-            else if (job.id === "nightly-rnd-henry") desc = "Runs at 11:00 PM. Henry synthesizes the day's activities and prepares tomorrow's delegations.";
+            let desc = "Script de automatización programado.";
+            if (job.id === "health-check-main") desc = "Hace ping al uso de CPU, utilización de RAM y registros Nginx cada 5 minutos. Registra alertas en el portal.";
+            else if (job.id === "session-cleanup-hourly") desc = "Limpia procesos Node grandes, archiva tokens de sesión inactivos y limpia archivos temporales del sistema local.";
+            else if (job.id === "morning-research-daily") desc = "Escaneo automatizado de Scout a las 8:00 AM. Recopila precios estéticos de la competencia y actualizaciones clínicas locales.";
+            else if (job.id === "daily-memo-writer") desc = "Se ejecuta a las 9:00 AM. Writer revisa el escaneo de Scout y compila un informe operativo matutino.";
+            else if (job.id === "nightly-rnd-henry") desc = "Se ejecuta a las 11:00 PM. Henry sintetiza las actividades del día y prepara las delegaciones de mañana.";
 
-            const timeStr = job.last_run ? new Date(job.last_run).toLocaleString() : "Never run";
+            const timeStr = job.last_run ? new Date(job.last_run).toLocaleString() : "Nunca se ejecutó";
             const statusClass = job.last_status === "ok" ? "badge-active" : job.last_status === "never run" ? "badge-warn" : "badge-inactive";
 
             card.innerHTML = `
@@ -647,7 +647,7 @@ async function loadCronJobs() {
                     <div><span class="cron-lbl">Last Run:</span> <span>${timeStr}</span></div>
                 </div>
                 <div class="cron-btn-sec">
-                    <button class="btn btn-primary" onclick="triggerCronJob('${job.id}')">Run Now</button>
+                    <button class="btn btn-primary" onclick="triggerCronJob('${job.id}')">Ejecutar Ahora</button>
                 </div>
             `;
             container.appendChild(card);
@@ -660,11 +660,11 @@ async function loadCronJobs() {
 async function triggerCronJob(jobId) {
     try {
         const res = await fetch(`/api/cron/${jobId}/run`, { method: "POST" });
-        if (!res.ok) throw new Error("Failed to trigger");
-        alert(`Job "${jobId}" triggered! Check Reports tab in a few minutes.`);
+        if (!res.ok) throw new Error("No se pudo activar");
+        alert(`¡Trabajo "${jobId}" activado! Revisa la pestaña Informes en unos minutos.`);
         setTimeout(loadCronJobs, 2000);
     } catch (e) {
-        alert(`Failed to run job: ${e.message}`);
+        alert(`No se pudo ejecutar el trabajo: ${e.message}`);
     }
 }
 
@@ -679,7 +679,7 @@ async function loadReports() {
         listContainer.innerHTML = "";
         
         if (reports.length === 0) {
-            listContainer.innerHTML = `<p class="text-secondary" style="padding:16px">No reports generated yet. Run a cron job or message Henry to generate one.</p>`;
+            listContainer.innerHTML = `<p class="text-secondary" style="padding:16px">Aún no se han generado informes. Ejecuta un trabajo cron o envía un mensaje a Henry para generar uno.</p>`;
             return;
         }
         
@@ -729,7 +729,7 @@ function renderReportViewer(rep) {
     
     const cleanDate = new Date(rep.created_at.replace(" ", "T") + "Z");
     const dateStr = cleanDate.toLocaleString();
-    metaEl.innerHTML = `Compiled by <code class="text-cyan">${rep.agent_id}</code> on <span>${dateStr}</span>`;
+    metaEl.innerHTML = `Compilado por <code class="text-cyan">${rep.agent_id}</code> el <span>${dateStr}</span>`;
     
     // Parse content using marked
     bodyEl.innerHTML = marked.parse(rep.content);
@@ -791,7 +791,7 @@ if (voiceBtn && cmdInput) {
         recognition.onstart = () => {
             isListening = true;
             voiceBtn.classList.add("listening");
-            cmdInput.placeholder = "Listening... Speak now.";
+            cmdInput.placeholder = "Escuchando... Habla ahora.";
             originalValue = cmdInput.value.trim();
         };
 

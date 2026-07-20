@@ -14,7 +14,7 @@ from pydantic import BaseModel
 import shutil
 from typing import Optional, List
 
-app = FastAPI(title="Derma Art MedSpa Agent Portal")
+app = FastAPI(title="Portal de Agentes Derma Art MedSpa")
 
 DB_PATH = os.environ.get("DB_PATH", "/opt/dermaart-portal/dermaart.db")
 OPENCLAW_HOME = os.environ.get("OPENCLAW_HOME", "/home/clawuser/.openclaw")
@@ -218,8 +218,8 @@ def submit_command(req: CommandRequest):
                 # Intercept empty responses or OpenClaw empty-turn fallback
                 if not answer or answer == "No response from OpenClaw.":
                     answer = (
-                        "I have received your request and am delegating the tasks to the sub-agents in the background. "
-                        "I will submit a final retrospective report to the Reports & Memos section once completed."
+                        "He recibido su solicitud y estoy delegando las tareas a los subagentes en segundo plano. "
+                        "Enviaré un informe retrospectivo final a la sección de Informes y Memorándums una vez completado."
                     )
             else:
                 answer = json.dumps(res_data)
@@ -228,12 +228,12 @@ def submit_command(req: CommandRequest):
     except urllib.error.HTTPError as e:
         status = "failed"
         try:
-            answer = f"Gateway Error {e.code}: {e.read().decode('utf-8')}"
+            answer = f"Error de Puerta de Enlace {e.code}: {e.read().decode('utf-8')}"
         except Exception:
-            answer = f"Gateway HTTP Error {e.code}: {e.reason}"
+            answer = f"Error HTTP de Puerta de Enlace {e.code}: {e.reason}"
     except Exception as e:
         status = "failed"
-        answer = f"Portal Connection Error: {e}"
+        answer = f"Error de Conexión del Portal: {e}"
 
     # Update database
     conn = sqlite3.connect(DB_PATH)
@@ -278,25 +278,25 @@ def submit_report(req: ReportRequest):
     # Or titles inside the Markdown block.
     lines = content.split("\n")
     agent_id = "unknown"
-    title = "System Report"
+    title = "Informe del Sistema"
 
     # Quick heuristics to extract clean details
     for line in lines[:3]:
         if "Henry" in line:
             agent_id = "henry"
-            title = "Henry's Strategic Retrospective"
+            title = "Retrospectiva Estratégica de Henry"
         elif "Coder" in line:
             agent_id = "coder"
-            title = "Coder's Development Report"
+            title = "Informe de Desarrollo de Coder"
         elif "Scout" in line:
             agent_id = "scout"
-            title = "Scout's Market Research scan"
+            title = "Escaneo de Investigación de Mercado de Scout"
         elif "Writer" in line:
             agent_id = "writer"
-            title = "Writer's Operational Memo"
+            title = "Memorándum Operativo de Writer"
         elif "Watcher" in line:
             agent_id = "watcher"
-            title = "Watcher's Health Alert"
+            title = "Alerta de Salud de Watcher"
 
     # Extract Markdown title if present
     for line in lines:
@@ -350,7 +350,7 @@ def get_cron_jobs():
             })
         return {"jobs": result}
     except Exception as e:
-        return {"error": f"Failed to load jobs from SQLite: {e}"}
+        return {"error": f"Error al cargar trabajos desde SQLite: {e}"}
 
 @app.post("/api/cron/{job_id}/run")
 def run_cron_job(job_id: str):
@@ -373,18 +373,18 @@ def upload_media(agent_id: str, file: UploadFile = File(...)):
     # Validate agent
     valid_agents = ["henry", "coder", "scout", "writer", "watcher"]
     if agent_id not in valid_agents:
-        raise HTTPException(status_code=400, detail="Invalid agent ID")
+        raise HTTPException(status_code=400, detail="ID de agente inválido")
     
     # Sanitize filename
     filename = os.path.basename(file.filename)
     _, ext = os.path.splitext(filename.lower())
     if ext not in ALLOWED_MEDIA_EXTENSIONS:
-        raise HTTPException(status_code=400, detail="Unsupported media file type")
+        raise HTTPException(status_code=400, detail="Tipo de archivo multimedia no compatible")
     
     # Ensure workspace target path exists
     agent_workspace = os.path.join(OPENCLAW_HOME, f"workspace-{agent_id}")
     if not os.path.exists(agent_workspace):
-        raise HTTPException(status_code=404, detail=f"Agent workspace not found: {agent_workspace}")
+        raise HTTPException(status_code=404, detail=f"Espacio de trabajo del agente no encontrado: {agent_workspace}")
         
     target_path = os.path.join(agent_workspace, filename)
     
@@ -401,7 +401,7 @@ def upload_media(agent_id: str, file: UploadFile = File(...)):
             except Exception:
                 subprocess.run(["chown", "clawuser:clawuser", target_path])
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to write file: {e}")
+        raise HTTPException(status_code=500, detail=f"Error al escribir el archivo: {e}")
         
     return {"status": "success", "filename": filename, "path": target_path}
 
@@ -409,7 +409,7 @@ def upload_media(agent_id: str, file: UploadFile = File(...)):
 def list_media(agent_id: str):
     valid_agents = ["henry", "coder", "scout", "writer", "watcher"]
     if agent_id not in valid_agents:
-        raise HTTPException(status_code=400, detail="Invalid agent ID")
+        raise HTTPException(status_code=400, detail="ID de agente inválido")
         
     agent_workspace = os.path.join(OPENCLAW_HOME, f"workspace-{agent_id}")
     if not os.path.exists(agent_workspace):
@@ -430,7 +430,7 @@ def list_media(agent_id: str):
                         "modified": datetime.fromtimestamp(stat_info.st_mtime).strftime("%Y-%m-%d %H:%M:%S")
                     })
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to list directory: {e}")
+        raise HTTPException(status_code=500, detail=f"Error al listar el directorio: {e}")
         
     files.sort(key=lambda x: x["name"])
     return {"files": files}
@@ -439,18 +439,18 @@ def list_media(agent_id: str):
 def download_media(agent_id: str, filename: str):
     valid_agents = ["henry", "coder", "scout", "writer", "watcher"]
     if agent_id not in valid_agents:
-        raise HTTPException(status_code=400, detail="Invalid agent ID")
+        raise HTTPException(status_code=400, detail="ID de agente inválido")
         
     filename = os.path.basename(filename)
     _, ext = os.path.splitext(filename.lower())
     if ext not in ALLOWED_MEDIA_EXTENSIONS:
-        raise HTTPException(status_code=400, detail="Access denied")
+        raise HTTPException(status_code=400, detail="Acceso denegado")
         
     agent_workspace = os.path.join(OPENCLAW_HOME, f"workspace-{agent_id}")
     file_path = os.path.join(agent_workspace, filename)
     
     if not os.path.exists(file_path):
-        raise HTTPException(status_code=404, detail="File not found")
+        raise HTTPException(status_code=404, detail="Archivo no encontrado")
         
     return FileResponse(file_path)
 
@@ -458,31 +458,31 @@ def download_media(agent_id: str, filename: str):
 def delete_media(agent_id: str, filename: str):
     valid_agents = ["henry", "coder", "scout", "writer", "watcher"]
     if agent_id not in valid_agents:
-        raise HTTPException(status_code=400, detail="Invalid agent ID")
+        raise HTTPException(status_code=400, detail="ID de agente inválido")
         
     filename = os.path.basename(filename)
     _, ext = os.path.splitext(filename.lower())
     if ext not in ALLOWED_MEDIA_EXTENSIONS:
-        raise HTTPException(status_code=400, detail="Access denied")
+        raise HTTPException(status_code=400, detail="Acceso denegado")
         
     agent_workspace = os.path.join(OPENCLAW_HOME, f"workspace-{agent_id}")
     file_path = os.path.join(agent_workspace, filename)
     
     if not os.path.exists(file_path):
-        raise HTTPException(status_code=404, detail="File not found")
+        raise HTTPException(status_code=404, detail="Archivo no encontrado")
         
     try:
         os.remove(file_path)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to delete file: {e}")
+        raise HTTPException(status_code=500, detail=f"Error al eliminar el archivo: {e}")
         
 @app.get("/api/media/generated")
 def download_generated_media(filepath: str):
     # Ensure the target file is inside openclaw home media directory for safety
     if not filepath.startswith(OPENCLAW_HOME + "/media/"):
-        raise HTTPException(status_code=400, detail="Access denied")
+        raise HTTPException(status_code=400, detail="Acceso denegado")
     if not os.path.exists(filepath):
-        raise HTTPException(status_code=404, detail="File not found")
+        raise HTTPException(status_code=404, detail="Archivo no encontrado")
     return FileResponse(filepath)
 
 # Pydantic models for credentials sharing

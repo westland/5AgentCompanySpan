@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DERMA ART MedSpa — AI Command Center</title>
+    <title>DERMA ART MedSpa — Centro de Mando de IA</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,27 +26,27 @@
                     <span class="logo-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
                     <span class="logo-text">DERMA ART</span>
                 </div>
-                <div class="brand-subtitle">MEDSPA AI PORTAL</div>
+                <div class="brand-subtitle">PORTAL DE IA MEDSPA</div>
             </div>
             
             <nav class="nav-menu">
                 <button class="nav-item active" data-tab="tab-command">
-                    <i class="fa-solid fa-terminal"></i> Command Center
+                    <i class="fa-solid fa-terminal"></i> Centro de Mando
                 </button>
                 <button class="nav-item" data-tab="tab-roster">
-                    <i class="fa-solid fa-users-gear"></i> Agent Roster
+                    <i class="fa-solid fa-users-gear"></i> Lista de Agentes
                 </button>
                 <button class="nav-item" data-tab="tab-cron">
-                    <i class="fa-solid fa-clock"></i> Automated Jobs
+                    <i class="fa-solid fa-clock"></i> Trabajos Automatizados
                 </button>
                 <button class="nav-item" data-tab="tab-reports">
-                    <i class="fa-solid fa-file-invoice"></i> Reports & Memos
+                    <i class="fa-solid fa-file-invoice"></i> Informes y Memorándums
                 </button>
                 <button class="nav-item" data-tab="tab-system">
-                    <i class="fa-solid fa-server"></i> System Status
+                    <i class="fa-solid fa-server"></i> Estado del Sistema
                 </button>
                 <button class="nav-item" data-tab="tab-credentials">
-                    <i class="fa-solid fa-key"></i> Integrations & Auth
+                    <i class="fa-solid fa-key"></i> Integraciones y Autenticación
                 </button>
             </nav>
             
@@ -54,7 +54,7 @@
                 <div class="provider-avatar">SK</div>
                 <div class="provider-info">
                     <div class="provider-name">Sumar Kasik, RN</div>
-                    <div class="provider-role">Direct Provider</div>
+                    <div class="provider-role">Proveedor Directo</div>
                 </div>
             </div>
         </aside>
@@ -64,18 +64,18 @@
             <!-- Header -->
             <header class="top-header">
                 <div class="header-left">
-                    <button id="sidebar-toggle" class="sidebar-toggle-btn" title="Toggle Sidebar">
+                    <button id="sidebar-toggle" class="sidebar-toggle-btn" title="Alternar Barra Lateral">
                         <i class="fa-solid fa-bars"></i>
                     </button>
                     <div class="header-title-sec">
-                        <h1 id="page-title">Command Center</h1>
-                        <p id="page-desc">Issue requests and direct tasks to your Chief of Staff, Henry.</p>
+                        <h1 id="page-title">Centro de Mando</h1>
+                        <p id="page-desc">Emite solicitudes y dirige tareas a tu Jefe de Personal, Henry.</p>
                     </div>
                 </div>
                 <div class="system-quick-stats">
                     <div class="quick-stat">
-                        <span class="stat-lbl">Gateway:</span>
-                        <span id="gateway-status-badge" class="badge badge-inactive">Checking...</span>
+                        <span class="stat-lbl">Puerta de enlace:</span>
+                        <span id="gateway-status-badge" class="badge badge-inactive">Comprobando...</span>
                     </div>
                     <div class="quick-stat">
                         <span class="stat-lbl">CPU:</span>
@@ -106,23 +106,23 @@
                             </div>
                             <div class="console-body" id="command-log">
                                 <div class="system-message">
-                                    <span class="msg-time">[System Initialized]</span> Welcome, Sumar. Issue commands or outline tasks to Henry (Chief of Staff). He will coordinate with Scout, Writer, Coder, and Watcher to carry out your requests.
+                                    <span class="msg-time">[Sistema Inicializado]</span> Bienvenida, Sumar. Emite comandos o describe tareas a Henry (Jefe de Personal). Él coordinará con Scout, Writer, Coder y Watcher para llevar a cabo tus solicitudes.
                                 </div>
                                 <!-- Log entries will be populated here -->
                             </div>
                             <div class="console-input-area">
                                 <div id="chat-attachments-preview" class="chat-attachments-preview" style="display: none;"></div>
                                 <form id="command-form">
-                                    <button type="button" id="chat-attachment-btn" class="chat-attachment-btn" title="Attach Pictures/Videos">
+                                    <button type="button" id="chat-attachment-btn" class="chat-attachment-btn" title="Adjuntar Imágenes/Videos">
                                         <i class="fa-solid fa-paperclip"></i>
                                     </button>
                                     <input type="file" id="chat-file-input" accept="image/*,video/*" multiple style="display:none">
-                                    <input type="text" id="command-input" placeholder="Ask Henry to draft copy, research competitors, or deploy changes..." autocomplete="off" required>
-                                    <button type="button" id="voice-input-btn" class="voice-btn" title="Voice Input">
+                                    <input type="text" id="command-input" placeholder="Pídele a Henry que redacte textos, investigue a la competencia o implemente cambios..." autocomplete="off" required>
+                                    <button type="button" id="voice-input-btn" class="voice-btn" title="Entrada de Voz">
                                         <i class="fa-solid fa-microphone"></i>
                                     </button>
                                     <button type="submit" id="command-submit-btn">
-                                        <span>Send</span> <i class="fa-solid fa-paper-plane"></i>
+                                        <span>Enviar</span> <i class="fa-solid fa-paper-plane"></i>
                                     </button>
                                 </form>
                             </div>
@@ -130,24 +130,24 @@
                         
                         <!-- Guidelines & Quick Shortcuts -->
                         <div class="shortcuts-card">
-                            <h3>Aesthetic Focus Guidelines</h3>
+                            <h3>Pautas de Enfoque Estético</h3>
                             <ul class="guidelines-list">
-                                <li><strong>Boutique Artistry</strong>: Emphasize direct access to Sumar Kasik, RN. No rotating staff or front desk friction.</li>
-                                <li><strong>Minimalist Homepage</strong>: Clean, tranquil cream/white base, thin borders, brand photos.</li>
-                                <li><strong>Treatments</strong>: Neuromodulators, Dermal Fillers, Biostimulators.</li>
-                                <li><strong>Financing</strong>: Subtle integration of Cherry and CareCredit.</li>
+                                <li><strong>Arte Boutique</strong>: Enfatiza el acceso directo a Sumar Kasik, RN. Sin personal rotativo ni fricción en recepción.</li>
+                                <li><strong>Página de Inicio Minimalista</strong>: Base limpia y tranquila en color crema/blanco, bordes finos, fotos de la marca.</li>
+                                <li><strong>Tratamientos</strong>: Neuromoduladores, Rellenos Dérmicos, Bioestimuladores.</li>
+                                <li><strong>Financiamiento</strong>: Integración sutil de Cherry y CareCredit.</li>
                             </ul>
                             
-                            <h3>Quick Actions</h3>
+                            <h3>Acciones Rápidas</h3>
                             <div class="shortcuts-buttons">
                                 <button class="btn btn-shortcut" data-prompt="Henry, have Scout research the latest aesthetic competitor pricing in Scottsdale. Log the summary.">
-                                    <i class="fa-solid fa-magnifying-glass-dollar"></i> Scan Local Competitor Pricing
+                                    <i class="fa-solid fa-magnifying-glass-dollar"></i> Escanear Precios de la Competencia Local
                                 </button>
                                 <button class="btn btn-shortcut" data-prompt="Henry, ask Writer to draft a new 'Direct Access' distinction section copy for the home page.">
-                                    <i class="fa-solid fa-pen-nib"></i> Draft 'Direct Access' Blurb
+                                    <i class="fa-solid fa-pen-nib"></i> Redactar Texto Breve de 'Acceso Directo'
                                 </button>
                                 <button class="btn btn-shortcut" data-prompt="Henry, ask Watcher to run a system check on our MedSpa website deployment server.">
-                                    <i class="fa-solid fa-heartbeat"></i> Run System Infrastructure Check
+                                    <i class="fa-solid fa-heartbeat"></i> Ejecutar Verificación de Infraestructura del Sistema
                                 </button>
                             </div>
                         </div>
@@ -165,7 +165,7 @@
                 <section id="tab-cron" class="tab-pane">
                     <div class="cron-container">
                         <div class="cron-intro card">
-                            <p><i class="fa-solid fa-circle-info text-cyan"></i> The following automated jobs are scheduled via systemd services on your DigitalOcean server. You can monitor their status or execute them immediately on-demand.</p>
+                            <p><i class="fa-solid fa-circle-info text-cyan"></i> Los siguientes trabajos automatizados están programados mediante servicios systemd en tu servidor DigitalOcean. Puedes monitorear su estado o ejecutarlos inmediatamente a pedido.</p>
                         </div>
                         <div class="cron-grid" id="cron-container">
                             <!-- Cron cards dynamically injected -->
@@ -179,7 +179,7 @@
                         <!-- Left Sidebar: Report List -->
                         <div class="reports-list-card">
                             <div class="card-header-simple">
-                                <h3>Generated Briefings</h3>
+                                <h3>Informes Generados</h3>
                             </div>
                             <div class="reports-list" id="reports-list-container">
                                 <!-- Report items dynamically injected -->
@@ -188,13 +188,13 @@
                         <!-- Right Pane: Report Reader -->
                         <div class="report-viewer-card">
                             <div class="viewer-header">
-                                <h3 id="report-view-title">Select a report</h3>
-                                <div class="report-meta" id="report-view-meta">Click on a report from the list to display details here.</div>
+                                <h3 id="report-view-title">Selecciona un informe</h3>
+                                <div class="report-meta" id="report-view-meta">Haz clic en un informe de la lista para mostrar los detalles aquí.</div>
                             </div>
                             <div class="viewer-body markdown-body" id="report-view-body">
                                 <div class="empty-state">
                                     <i class="fa-regular fa-folder-open"></i>
-                                    <p>No report loaded</p>
+                                    <p>Ningún informe cargado</p>
                                 </div>
                             </div>
                         </div>
@@ -207,7 +207,7 @@
                         <div class="metrics-grid">
                             <!-- Memory Card -->
                             <div class="metric-card card">
-                                <h3>RAM Memory</h3>
+                                <h3>Memoria RAM</h3>
                                 <div class="metric-visual">
                                     <svg class="progress-ring" width="120" height="120">
                                         <circle class="progress-ring__circle-bg" stroke="rgba(255,255,255,0.05)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60"/>
@@ -215,12 +215,12 @@
                                     </svg>
                                     <div class="metric-text" id="sys-ram-val">0%</div>
                                 </div>
-                                <div class="metric-details" id="sys-ram-details">0 / 0 GB used</div>
+                                <div class="metric-details" id="sys-ram-details">0 / 0 GB usados</div>
                             </div>
                             
                             <!-- CPU Card -->
                             <div class="metric-card card">
-                                <h3>CPU Load</h3>
+                                <h3>Carga de CPU</h3>
                                 <div class="metric-visual">
                                     <svg class="progress-ring" width="120" height="120">
                                         <circle class="progress-ring__circle-bg" stroke="rgba(255,255,255,0.05)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60"/>
@@ -228,12 +228,12 @@
                                     </svg>
                                     <div class="metric-text" id="sys-cpu-val">0%</div>
                                 </div>
-                                <div class="metric-details" id="sys-cpu-details">Processor active load</div>
+                                <div class="metric-details" id="sys-cpu-details">Carga activa del procesador</div>
                             </div>
 
                             <!-- Disk Card -->
                             <div class="metric-card card">
-                                <h3>Disk Space</h3>
+                                <h3>Espacio en Disco</h3>
                                 <div class="metric-visual">
                                     <svg class="progress-ring" width="120" height="120">
                                         <circle class="progress-ring__circle-bg" stroke="rgba(255,255,255,0.05)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60"/>
@@ -241,17 +241,17 @@
                                     </svg>
                                     <div class="metric-text" id="sys-disk-val">0%</div>
                                 </div>
-                                <div class="metric-details" id="sys-disk-details">0 / 0 GB used</div>
+                                <div class="metric-details" id="sys-disk-details">0 / 0 GB usados</div>
                             </div>
                         </div>
 
                         <!-- Process Details -->
                         <div class="sys-processes card">
-                            <h3>Gateway Process Details</h3>
+                            <h3>Detalles del Proceso de Puerta de Enlace</h3>
                             <table class="sys-table">
                                 <tbody>
                                     <tr>
-                                        <td>Process Name:</td>
+                                        <td>Nombre del Proceso:</td>
                                         <td><code class="text-cyan">openclaw-gateway</code></td>
                                     </tr>
                                     <tr>
@@ -259,15 +259,15 @@
                                         <td id="sys-proc-pid">—</td>
                                     </tr>
                                     <tr>
-                                        <td>Uptime:</td>
+                                        <td>Tiempo de Actividad:</td>
                                         <td id="sys-proc-uptime">—</td>
                                     </tr>
                                     <tr>
-                                        <td>RSS Memory:</td>
+                                        <td>Memoria RSS:</td>
                                         <td id="sys-proc-mem">—</td>
                                     </tr>
                                     <tr>
-                                        <td>API Location:</td>
+                                        <td>Ubicación de API:</td>
                                         <td><code>http://127.0.0.1:18789</code></td>
                                     </tr>
                                 </tbody>
@@ -282,21 +282,21 @@
                         <div class="credentials-grid">
                             <!-- WordPress Credentials Card -->
                             <div class="credentials-card card">
-                                <h3><i class="fa-brands fa-wordpress text-cyan"></i> WordPress Integration</h3>
+                                <h3><i class="fa-brands fa-wordpress text-cyan"></i> Integración con WordPress</h3>
                                 <div class="credentials-form-group">
-                                    <label for="wp_url">WordPress Site URL</label>
+                                    <label for="wp_url">URL del Sitio de WordPress</label>
                                     <input type="url" id="wp_url" placeholder="https://yourmedspa.com" autocomplete="off">
                                 </div>
                                 <div class="credentials-form-group">
-                                    <label for="wp_username">Username / Email</label>
+                                    <label for="wp_username">Usuario / Correo Electrónico</label>
                                     <input type="text" id="wp_username" placeholder="admin" autocomplete="off">
                                 </div>
                                 <div class="credentials-form-group">
-                                    <label for="wp_password">Application Password</label>
+                                    <label for="wp_password">Contraseña de la Aplicación</label>
                                     <input type="password" id="wp_password" placeholder="●●●●●●●●●●" autocomplete="off">
                                 </div>
                                 <div class="credentials-sharing-sec">
-                                    <span class="sharing-lbl">Share access with agents:</span>
+                                    <span class="sharing-lbl">Compartir acceso con agentes:</span>
                                     <div class="sharing-agents-grid">
                                         <label class="sharing-agent-chip">
                                             <input type="checkbox" name="wp_agents" value="henry">
@@ -324,17 +324,17 @@
 
                             <!-- Instagram Credentials Card -->
                             <div class="credentials-card card">
-                                <h3><i class="fa-brands fa-instagram text-purple"></i> Instagram Integration</h3>
+                                <h3><i class="fa-brands fa-instagram text-purple"></i> Integración con Instagram</h3>
                                 <div class="credentials-form-group">
-                                    <label for="ig_account_id">Instagram Business Account ID</label>
+                                    <label for="ig_account_id">ID de Cuenta Comercial de Instagram</label>
                                     <input type="text" id="ig_account_id" placeholder="178414xxxxxxxxxxx" autocomplete="off">
                                 </div>
                                 <div class="credentials-form-group">
-                                    <label for="ig_access_token">Page Access Token</label>
+                                    <label for="ig_access_token">Token de Acceso de Página</label>
                                     <input type="password" id="ig_access_token" placeholder="●●●●●●●●●●" autocomplete="off">
                                 </div>
                                 <div class="credentials-sharing-sec">
-                                    <span class="sharing-lbl">Share access with agents:</span>
+                                    <span class="sharing-lbl">Compartir acceso con agentes:</span>
                                     <div class="sharing-agents-grid">
                                         <label class="sharing-agent-chip">
                                             <input type="checkbox" name="ig_agents" value="henry">
@@ -362,17 +362,17 @@
 
                             <!-- Facebook Credentials Card -->
                             <div class="credentials-card card">
-                                <h3><i class="fa-brands fa-facebook text-cyan"></i> Facebook Integration</h3>
+                                <h3><i class="fa-brands fa-facebook text-cyan"></i> Integración con Facebook</h3>
                                 <div class="credentials-form-group">
-                                    <label for="fb_page_id">Facebook Page ID</label>
+                                    <label for="fb_page_id">ID de Página de Facebook</label>
                                     <input type="text" id="fb_page_id" placeholder="102xxxxxxxxxxxx" autocomplete="off">
                                 </div>
                                 <div class="credentials-form-group">
-                                    <label for="fb_access_token">Page Access Token</label>
+                                    <label for="fb_access_token">Token de Acceso de Página</label>
                                     <input type="password" id="fb_access_token" placeholder="●●●●●●●●●●" autocomplete="off">
                                 </div>
                                 <div class="credentials-sharing-sec">
-                                    <span class="sharing-lbl">Share access with agents:</span>
+                                    <span class="sharing-lbl">Compartir acceso con agentes:</span>
                                     <div class="sharing-agents-grid">
                                         <label class="sharing-agent-chip">
                                             <input type="checkbox" name="fb_agents" value="henry">
@@ -400,13 +400,13 @@
 
                             <!-- TikTok Credentials Card -->
                             <div class="credentials-card card">
-                                <h3><i class="fa-brands fa-tiktok text-primary"></i> TikTok Integration</h3>
+                                <h3><i class="fa-brands fa-tiktok text-primary"></i> Integración con TikTok</h3>
                                 <div class="credentials-form-group">
-                                    <label for="tiktok_access_token">TikTok Creator Access Token</label>
+                                    <label for="tiktok_access_token">Token de Acceso de Creador de TikTok</label>
                                     <input type="password" id="tiktok_access_token" placeholder="●●●●●●●●●●" autocomplete="off">
                                 </div>
                                 <div class="credentials-sharing-sec">
-                                    <span class="sharing-lbl">Share access with agents:</span>
+                                    <span class="sharing-lbl">Compartir acceso con agentes:</span>
                                     <div class="sharing-agents-grid">
                                         <label class="sharing-agent-chip">
                                             <input type="checkbox" name="tiktok_agents" value="henry">
@@ -434,29 +434,29 @@
 
                             <!-- Google Business Profile Credentials Card -->
                             <div class="credentials-card card">
-                                <h3><i class="fa-brands fa-google text-cyan"></i> Google Business Profile</h3>
+                                <h3><i class="fa-brands fa-google text-cyan"></i> Perfil de Negocio de Google</h3>
                                 <div class="credentials-form-group">
-                                    <label for="gb_account_id">Google Account ID</label>
+                                    <label for="gb_account_id">ID de Cuenta de Google</label>
                                     <input type="text" id="gb_account_id" placeholder="105xxxxxxxxxxxxxxxxxx" autocomplete="off">
                                 </div>
                                 <div class="credentials-form-group">
-                                    <label for="gb_location_id">Google Location ID</label>
+                                    <label for="gb_location_id">ID de Ubicación de Google</label>
                                     <input type="text" id="gb_location_id" placeholder="locations/12345xxxxxxxxxxx" autocomplete="off">
                                 </div>
                                 <div class="credentials-form-group">
-                                    <label for="gb_client_id">OAuth Client ID</label>
+                                    <label for="gb_client_id">ID de Cliente OAuth</label>
                                     <input type="password" id="gb_client_id" placeholder="●●●●●●●●●●" autocomplete="off">
                                 </div>
                                 <div class="credentials-form-group">
-                                    <label for="gb_client_secret">OAuth Client Secret</label>
+                                    <label for="gb_client_secret">Secreto de Cliente OAuth</label>
                                     <input type="password" id="gb_client_secret" placeholder="●●●●●●●●●●" autocomplete="off">
                                 </div>
                                 <div class="credentials-form-group">
-                                    <label for="gb_refresh_token">OAuth Refresh Token</label>
+                                    <label for="gb_refresh_token">Token de Actualización OAuth</label>
                                     <input type="password" id="gb_refresh_token" placeholder="●●●●●●●●●●" autocomplete="off">
                                 </div>
                                 <div class="credentials-sharing-sec">
-                                    <span class="sharing-lbl">Share access with agents:</span>
+                                    <span class="sharing-lbl">Compartir acceso con agentes:</span>
                                     <div class="sharing-agents-grid">
                                         <label class="sharing-agent-chip">
                                             <input type="checkbox" name="gb_agents" value="henry">
@@ -486,7 +486,7 @@
                         <div class="credentials-actions-bar">
                             <span id="credentials-save-status" class="save-status-msg"></span>
                             <button type="submit" class="btn btn-primary btn-save-all">
-                                <i class="fa-solid fa-floppy-disk"></i> Save Integrations & Permissions
+                                <i class="fa-solid fa-floppy-disk"></i> Guardar Integraciones y Permisos
                             </button>
                         </div>
                     </form>
@@ -500,13 +500,13 @@
     <div class="modal-backdrop" id="agent-modal">
         <div class="modal-card">
             <div class="modal-header">
-                <h2 id="modal-agent-title">Agent Profile</h2>
+                <h2 id="modal-agent-title">Perfil del Agente</h2>
                 <button class="modal-close-btn" id="modal-close"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="modal-tabs">
-                <button class="modal-tab-btn active" data-subtab="modal-soul">SOUL & Personality</button>
-                <button class="modal-tab-btn" data-subtab="modal-mem">Workspace Memory</button>
-                <button class="modal-tab-btn" id="modal-files-tab" data-subtab="modal-files">Workspace Files</button>
+                <button class="modal-tab-btn active" data-subtab="modal-soul">ALMA y Personalidad</button>
+                <button class="modal-tab-btn" data-subtab="modal-mem">Memoria del Espacio de Trabajo</button>
+                <button class="modal-tab-btn" id="modal-files-tab" data-subtab="modal-files">Archivos del Espacio de Trabajo</button>
             </div>
             <div class="modal-body">
                 <div id="modal-soul" class="modal-subpane active markdown-body"></div>
@@ -514,11 +514,11 @@
                 <div id="modal-files" class="modal-subpane">
                     <div class="files-upload-zone" id="files-upload-zone">
                         <i class="fa-solid fa-cloud-arrow-up"></i>
-                        <p>Drag & drop pictures or videos here, or click to upload</p>
+                        <p>Arrastra y suelta imágenes o videos aquí, o haz clic para subir</p>
                         <input type="file" id="modal-file-input" accept="image/*,video/*" multiple style="display:none">
                     </div>
                     <div class="files-list-container">
-                        <h4>Files in Agent Workspace</h4>
+                        <h4>Archivos en el Espacio de Trabajo del Agente</h4>
                         <div id="modal-files-list" class="workspace-files-grid">
                             <!-- Populated dynamically -->
                         </div>
